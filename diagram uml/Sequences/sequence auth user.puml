@@ -1,0 +1,18 @@
+@startuml
+actor Utilisateur
+participant "Interface Web" as Web
+participant "Serveur Authentification" as Auth
+participant "Base de Données" as DB
+
+Utilisateur -> Web : Entrer email & mot de passe
+Web -> Auth : Envoyer identifiants
+Auth -> DB : Vérifier(email, motDePasse)
+DB --> Auth : Résultat (succès/échec)
+alt Authentification réussie
+    Auth --> Web : Session ouverte
+    Web --> Utilisateur : Accès autorisé
+else Authentification échouée
+    Auth --> Web : Message d’erreur
+    Web --> Utilisateur : Accès refusé
+end
+@enduml

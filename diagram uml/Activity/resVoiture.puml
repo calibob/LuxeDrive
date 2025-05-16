@@ -1,0 +1,23 @@
+@startuml
+start
+:Client accède au catalogue;
+if (Voiture disponible?) then (oui)
+  :Sélection des dates/options;
+  :Création du panier;
+  fork
+    :Vérification solvabilité;
+  fork again
+    :Pré-reservation temporaire;
+  end fork
+  :Paiement en ligne;
+  if (Paiement validé?) then (oui)
+    :Confirmation réservation;
+    stop
+  else (non)
+    :Annulation automatique;
+  endif
+else (non)
+  :Notification "Indisponible";
+endif
+stop
+@enduml

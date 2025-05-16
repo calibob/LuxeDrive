@@ -1,0 +1,19 @@
+@startuml
+state "Non confirmée" as non_confirmee
+state "Confirmée" as confirmee
+state "Payée" as payee
+state "Annulée" as annulee
+state "Terminée" as terminee
+
+[*] --> non_confirmee
+non_confirmee --> confirmee : Validation admin
+confirmee --> payee : Paiement reçu
+payee --> terminee : Récupération véhicule
+confirmee --> annulee : Annulation client
+payee --> annulee : Remboursement
+annulee --> [*]
+terminee --> [*]
+
+note left of non_confirmee : Le client crée la réservation
+note right of payee : Notification envoyée
+@enduml

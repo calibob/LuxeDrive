@@ -1,0 +1,58 @@
+@startuml
+abstract class Utilisateur {
+  - id: int
+  - nom: string
+  - email: string
+  - motDePasse: string
+  + seConnecter()
+  + seDéconnecter()
+}
+
+class Client extends Utilisateur {
+  - historiquePaiements: List
+  + consulterReservations()
+  + effectuerReservation()
+}
+
+class Administrateur extends Utilisateur {
+  + gererVoitures()
+  + gererUtilisateurs()
+  + gererReservations()
+}
+
+class Voiture {
+  - id: int
+  - marque: string
+  - modèle: string
+  - prixJour: double
+  - disponibilité: bool
+  + afficherDetails()
+}
+
+class Reservation {
+  - id: int
+  - dateDebut: date
+  - dateFin: date
+  - statut: string
+  - prixTotal: double
+  + reserver()
+  + annuler()
+}
+
+class Paiement {
+  - id: int
+  - montant: double
+  - datePaiement: date
+  - methode: string
+  - transactionId: string
+  - statut: string
+  + effectuerPaiement()
+  + verifierStatut()
+}
+
+Client "1" -- "*" Reservation : effectue >
+Voiture "1" -- "*" Reservation : est réservée par >
+Reservation "1" -- "1" Paiement : génère >
+Administrateur "*" -- "*" Voiture : gère >
+
+@enduml

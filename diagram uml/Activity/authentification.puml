@@ -1,0 +1,25 @@
+@startuml
+start
+:Arrivée sur page login;
+if (Compte existant?) then (oui)
+  repeat
+    :Saisie email/mot de passe;
+    :Chiffrement AES-256;
+    :Vérification en base;
+    if (Credentials valides?) then (oui)
+      :Connexion;
+      stop
+    else (non)
+      :Incrément compteur échecs;
+      if (3 échecs?) then (oui)
+        :Blocage compte;
+        stop
+      else (non)
+      endif
+    endif
+  repeat while (Nouvelle tentative?) is (oui)
+else (non)
+  :Redirection inscription;
+endif
+stop
+@enduml

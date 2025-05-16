@@ -1,0 +1,10 @@
+@startuml
+[*] --> En_attente
+
+En_attente --> En_cours : Validation en cours
+En_cours --> Réussi : Paiement validé
+En_cours --> Échoué : Erreur transaction
+
+Réussi --> [*]
+Échoué --> [*]
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+actor Patient
+participant "Interface Utilisateur" as IU
+participant "Contrôleur" as Controller
+participant "Système" as System
+database "Base de données" as DB
+
+Patient -> IU : Remplir formulaire de RDV
+IU -> Controller : Soumettre formulaire
+Controller -> System : Vérifier disponibilité
+System -> DB : Requête créneaux disponibles
+DB --> System : Liste créneaux
+System --> Controller : Créneau disponible
+Controller --> IU : Afficher confirmation
+IU --> Patient : RDV confirmé
+@enduml

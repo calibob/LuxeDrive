@@ -1,0 +1,19 @@
+@startuml
+start
+:Client saisit infos carte;
+repeat
+  :Vérification 3D Secure;
+  if (Authentification OK?) then (oui)
+    :Débit du compte;
+  else (non)
+    :Demande nouvelle tentative;
+  endif
+repeat while (3 échecs max) is (non)
+->oui;
+if (Débit réussi?) then (oui)
+  :Génération facture PDF;
+else (non)
+  :Annulation réservation;
+endif
+stop
+@enduml

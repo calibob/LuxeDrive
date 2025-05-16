@@ -1,0 +1,14 @@
+@startuml
+object Utilisateur
+object InterfaceReservation
+object Serveur
+object BaseDeDonnées
+object Voiture
+
+Utilisateur --> InterfaceReservation : Sélectionne véhicule
+InterfaceReservation --> Serveur : Envoyer demande
+Serveur --> BaseDeDonnées : Vérifier disponibilité
+BaseDeDonnées --> Serveur : Véhicule disponible
+Serveur --> InterfaceReservation : Confirmer
+InterfaceReservation --> Utilisateur : Affiche confirmation
+@enduml

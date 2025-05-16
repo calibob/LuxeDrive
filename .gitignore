@@ -1,0 +1,23 @@
+# Fichiers d'environnement
+.env
+
+# Dépendances
+/vendor/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Dossiers et fichiers générés
+/node_modules/
+composer.lock
+
+# Fichiers de configuration d'IDE
+/.idea/
+/.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Fichiers temporaires
+*.log
+*.tmp

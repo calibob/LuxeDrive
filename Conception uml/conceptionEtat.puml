@@ -1,0 +1,11 @@
+@startuml
+[*] --> En_attente
+
+En_attente --> Confirme : Validation par le médecin
+Confirme --> Realise : Rendez-vous effectué
+Confirme --> Annule : Patient ou médecin annule
+En_attente --> Annule : Annulation avant confirmation
+
+Realise --> [*]
+Annule --> [*]
+@enduml

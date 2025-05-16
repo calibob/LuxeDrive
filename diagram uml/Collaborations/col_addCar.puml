@@ -1,0 +1,13 @@
+@startuml
+actor Administrateur
+participant "Interface Admin" as IA
+participant "Serveur Admin" as SA
+participant "Base de Données" as DB
+
+Administrateur -> IA : Remplir formulaire véhicule
+IA -> SA : Envoyer données véhicule
+SA -> DB : Ajouter nouveau véhicule
+DB --> SA : OK / Erreur
+SA --> IA : Résultat de l’opération
+IA --> Administrateur : Message de confirmation / erreur
+@enduml

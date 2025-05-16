@@ -1,0 +1,85 @@
+@startuml
+skinparam BackgroundColor #F5F5F5
+skinparam node {
+    BorderColor #444
+    BackgroundColor #FFFFFF
+    Shadowing false
+    Style uml2
+}
+
+node "Client Web" as client {
+    frame "Navigateur" {
+        card "HTML/CSS/JS\nResponsive" as nav
+    }
+    database "Protocole" {
+        card "HTTPS/TLS 1.3" as proto #1E90FF
+    }
+}
+
+node "Load Balancer" as lb {
+    component "HAProxy" as haproxy
+    card "Répartition de charge" as lb1
+    card "Terminaison SSL" as lb2
+}
+
+node "Backend API" as backend {
+    card "Apache 2.4" as apache
+    card "PHP 8.2 / Laravel 10" as laravel
+    card "Cluster Docker" as docker
+    card "4 vCPU / 16GB RAM" as cpu
+}
+
+node "Base de Données" as db {
+    database "MySQL 8" as mysql
+    card "AES-256" as crypt
+    card "Réplication Master-Slave" as ms
+    card "8 vCPU / 32GB RAM" as dbcpu
+}
+
+node "Stockage" as storage {
+    storage "NAS Enterprise" as nas
+    card "RAID-10" as raid
+    card "10TB" as size
+}
+
+cloud "CDN" as cdn {
+    card "Cloudflare" as cloudflare
+    card "Cache global" as cache
+    card "DDoS Protection" as ddos
+}
+
+cloud "Paiement" as payment {
+    card "Stripe" as stripe
+    card "API sécurisée" as stripeapi
+}
+
+client --> lb : Requêtes HTTPS (443)
+lb --> backend : Traffic équilibré (80 interne)
+backend --> db : Connexion SQL chiffrée (3306)
+backend --> storage : NFSv4 (2049)
+backend --> cdn : Push/Pull assets (HTTP/2)
+backend --> payment : API TLS 1.3 (443)
+
+note right of db
+    <b>Sécurité :</b>
+    • Chiffrement AES-256
+    • Réplication synchrone
+    • Backup horaire
+end note
+
+note left of cdn
+    <b>Performance :</b>
+    • Edge Locations
+    • Compression GZIP
+    • Cache images/JS
+end note
+
+legend bottom
+    <b>Légende :</b>
+    |===
+    #1E90FF|Communication sécurisée
+    #444|Infrastructure interne
+    #ADD8E6|Services externes
+    |===
+end legend
+@enduml

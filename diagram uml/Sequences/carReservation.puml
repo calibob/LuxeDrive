@@ -1,0 +1,20 @@
+@startuml
+actor Client
+participant "Interface Web" as Web
+participant "Serveur Réservation" as SR
+participant "Base de Données" as DB
+
+Client -> Web : Sélectionner véhicule + dates
+Web -> SR : Envoyer demande de réservation
+SR -> DB : Vérifier disponibilité
+DB --> SR : Disponible / Indisponible
+alt Disponible
+  SR -> DB : Créer réservation
+  DB --> SR : ID réservation
+  SR --> Web : Réservation confirmée
+  Web --> Client : Afficher confirmation
+else Indisponible
+  SR --> Web : Erreur : véhicule non disponible
+  Web --> Client : Afficher erreur
+end
+@enduml

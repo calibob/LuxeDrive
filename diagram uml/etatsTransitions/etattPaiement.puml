@@ -1,0 +1,17 @@
+@startuml
+state "Non initié" as non_initie
+state "En cours" as en_cours
+state "Réussi" as reussi
+state "Échoué" as echoue
+state "Remboursé" as rembourse
+
+[*] --> non_initie
+non_initie --> en_cours : Client saisit les infos
+en_cours --> reussi : Validation banque
+en_cours --> echoue : Erreur de paiement
+reussi --> rembourse : Demande de remboursement
+rembourse --> [*]
+echoue --> [*]
+
+note right of en_cours : Vérification 3D Secure
+@enduml

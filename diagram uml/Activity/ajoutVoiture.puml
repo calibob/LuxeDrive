@@ -1,0 +1,16 @@
+@startuml
+start
+:Admin saisit fiche technique;
+partition Validation {
+  :Vérification données;
+  if (Données valides?) then (oui)
+    :Upload photos;
+  else (non)
+    :Correction requise;
+    detach;
+  endif
+}
+:Publication catalogue;
+:Mise à jour base de données;
+stop
+@enduml

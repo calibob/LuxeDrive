@@ -1,0 +1,10 @@
+@startuml
+[*] --> Saisie_identifiants
+
+Saisie_identifiants --> Vérification : Soumettre formulaire
+Vérification --> Connecté : Identifiants valides
+Vérification --> Échec : Identifiants invalides
+
+Connecté --> [*]
+Échec --> Saisie_identifiants : Nouvelle tentative
+@enduml

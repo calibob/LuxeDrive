@@ -1,0 +1,24 @@
+@startuml
+actor Patient
+actor Secretaire
+actor Medecin
+actor Administrateur
+
+rectangle "Système de gestion du cabinet médical" {
+  Patient --> (Créer un compte)
+  Patient --> (Prendre rendez-vous)
+  Patient --> (Consulter dossier médical)
+
+  Secretaire --> (Gérer les rendez-vous)
+  Secretaire --> (Créer dossier patient)
+  Secretaire --> (Éditer les informations patient)
+
+  Medecin --> (Accéder aux dossiers patients)
+  Medecin --> (Effectuer une consultation)
+  Medecin --> (Prescrire une ordonnance)
+
+  Administrateur --> (Gérer les utilisateurs)
+  Administrateur --> (Consulter les statistiques)
+  Administrateur --> (Sauvegarde du système)
+}
+@enduml

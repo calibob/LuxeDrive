@@ -1,0 +1,10 @@
+@startuml
+[*] --> En_saisie
+
+En_saisie --> Vérification : Soumission du formulaire
+Vérification --> Ajouté : Données valides
+Vérification --> Erreur : Données incomplètes
+
+Ajouté --> [*]
+Erreur --> En_saisie : Correction requise
+@enduml

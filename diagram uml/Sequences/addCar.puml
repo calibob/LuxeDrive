@@ -1,0 +1,44 @@
+@startuml
+skinparam BackgroundColor #F5F5F5
+skinparam sequence {
+    LifeLineBorderColor #FFD700
+    ParticipantBorderColor #87CEEB
+    ParticipantBackgroundColor #F5F5F5
+    ActorBorderColor #000000
+}
+
+actor Administrateur
+participant "Frontend\n(Espace Admin)\nHTML/CSS/JS" as Front <<UI>> #FFD700
+participant "Backend\n(API REST Laravel)" as Back <<API>> #87CEEB
+participant "Service Métier\n(Gestion véhicules)" as Service <<Service>> #98FB98
+participant "Base de Données\n(MySQL 8)" as DB <<Database>> #FFA07A
+
+Administrateur -> Front : Remplir formulaire véhicule
+Front -> Back : POST /api/vehicles\n(Données JSON, HTTPS)
+Back -> Service : Valider & traiter données
+Service -> DB : INSERT INTO Vehicles\n(SQL chiffré AES)
+DB --> Service : Succès / Erreur
+Service --> Back : Résultat traitement
+Back --> Front : Statut ajout véhicule
+Front --> Administrateur : Message confirmation / erreur
+
+note right of Back
+    Validation sécurité
+    Authentification Admin
+end note
+
+note left of DB
+    Chiffrement AES-256
+    Journalisation
+end note
+
+legend right
+    <b>Légende :</b>
+    |===
+    #FFD700|Interface Utilisateur
+    #87CEEB|Couche API
+    #98FB98|Logique Métier
+    #FFA07A|Persistence Données
+    |===
+end legend
+@enduml

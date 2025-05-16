@@ -1,0 +1,69 @@
+@startuml
+' Orientation du diagramme
+left to right direction
+
+' Couleurs personnalisées pour chaque couche
+skinparam component {
+  BackgroundColor<<UI>> #FFD700    ' Jaune doré pour Interface Utilisateur
+  BackgroundColor<<API>> #1E90FF   ' Bleu dodger pour Couche API
+  BackgroundColor<<Service>> #90EE90 ' Vert clair pour Logique Métier
+  BackgroundColor<<Database>> #FF7F50 ' Corail pour Persistence Données
+  BorderColor black
+  FontSize 13
+  FontName Arial
+  RoundCorner 15
+}
+
+' Définition des packages avec légende couleur
+package "Interface Utilisateur" <<UI>> {
+  [Frontend\n(Espace Admin)\nHTML/CSS/JS] as Front
+}
+
+package "Couche API" <<API>> {
+  [Backend\n(API REST Laravel)] as Back
+}
+
+package "Logique Métier" <<Service>> {
+  [Service Métier\n(Gestion véhicules)] as Service
+}
+
+package "Persistence Données" <<Database>> {
+  [Base de Données\n(MySQL 8)] as DB
+}
+
+actor Administrateur
+
+' Relations entre composants
+Administrateur --> Front : Utilisation
+
+Front --> Back : POST /api/vehicles\n(Données JSON, HTTPS)
+Back --> Service : Valider & traiter données
+Service --> DB : INSERT INTO Vehicles\n(SQL chiffré AES)
+DB --> Service : Succès / Erreur
+Service --> Back : Résultat traitement
+Back --> Front : Statut ajout véhicule
+Front --> Administrateur : Message confirmation / erreur
+
+' Notes explicatives
+note right of Back
+  Validation sécurité
+  Authentification Admin
+end note
+
+note left of DB
+  Chiffrement AES-256
+  Journalisation
+end note
+
+' Légende avec couleurs
+legend right
+  <b>Légende :</b>
+  |===
+  #FFD700|Interface Utilisateur
+  #1E90FF|Couche API
+  #90EE90|Logique Métier
+  #FF7F50|Persistence Données
+  |===
+end legend
+
+@enduml

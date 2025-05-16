@@ -1,0 +1,21 @@
+@startuml
+actor Client
+participant "Interface Paiement" as IP
+participant "Serveur Paiement" as SP
+participant "Base de Données" as DB
+participant "Service Paiement Externe" as Stripe
+
+Client -> IP : Entrer informations de carte
+IP -> SP : Envoyer infos paiement
+SP -> Stripe : Traiter paiement
+Stripe --> SP : Résultat paiement
+alt Paiement réussi
+  SP -> DB : Enregistrer paiement
+  DB --> SP : OK
+  SP --> IP : Paiement confirmé
+  IP --> Client : Afficher reçu
+else Échec
+  SP --> IP : Paiement refusé
+  IP --> Client : Message d’erreur
+end
+@enduml

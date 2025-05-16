@@ -1,0 +1,37 @@
+@startuml
+left to right direction
+actor Client
+actor Administrateur
+
+package "Plateforme de Location de Voitures de Luxe" {
+
+    usecase "S'inscrire" as UC1
+    usecase "Se connecter" as UC2
+    usecase "Réinitialiser mot de passe" as UC3
+    usecase "Consulter catalogue\n des véhicules" as UC4
+    usecase "Réserver un véhicule" as UC5
+    usecase "Payer en ligne" as UC6
+    usecase "Consulter/modifier\n son profil" as UC7
+    usecase "Consulter l’historique\n et les factures" as UC8
+
+    usecase "Gérer les véhicules" as UC9
+    usecase "Gérer les utilisateurs" as UC10
+    usecase "Gérer les réservations" as UC11
+    usecase "Consulter les avis clients" as UC12
+}
+
+Client --> UC1
+Client --> UC2
+Client --> UC3
+Client --> UC4
+Client --> UC5
+Client --> UC6
+Client --> UC7
+Client --> UC8
+
+Administrateur --> UC9
+Administrateur --> UC10
+Administrateur --> UC11
+Administrateur --> UC12
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+state "Brouillon" as brouillon
+state "Validée" as validee
+state "Disponible" as disponible
+state "Indisponible" as indisponible
+state "Archivée" as archivee
+
+[*] --> brouillon
+brouillon --> validee : Admin valide
+validee --> disponible : Mise en catalogue
+disponible --> indisponible : Réservée/En maintenance
+indisponible --> disponible : Réparation terminée
+disponible --> archivee : Véhicule retiré
+archivee --> [*]
+
+note left of brouillon : Saisie des détails (marque, prix...)
+@enduml

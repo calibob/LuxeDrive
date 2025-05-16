@@ -1,0 +1,12 @@
+@startuml
+[*] --> En_attente
+
+En_attente --> Confirmée : Paiement validé
+En_attente --> Annulée : Annulation par client
+
+Confirmée --> Annulée : Annulation manuelle
+Confirmée --> Terminée : Fin de location
+
+Annulée --> [*]
+Terminée --> [*]
+@enduml

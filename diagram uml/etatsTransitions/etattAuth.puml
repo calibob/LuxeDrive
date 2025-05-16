@@ -1,0 +1,15 @@
+@startuml
+state "Non connecté" as non_connecte
+state "En vérification" as en_verif
+state "Connecté" as connecte
+state "Bloqué" as bloque
+
+[*] --> non_connecte
+non_connecte --> en_verif : Saisie identifiants
+en_verif --> connecte : Credentials valides
+en_verif --> bloque : 3 échecs consécutifs
+bloque --> non_connecte : Réinitialisation mot de passe
+connecte --> [*] : Déconnexion
+
+note right of en_verif : Chiffrement AES-256
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+start
+:Choisir véhicule;
+:Sélectionner dates;
+:Remplir informations;
+:Procéder au paiement;
+if (Paiement réussi ?) then (oui)
+  :Confirmer réservation;
+else (non)
+  :Afficher erreur;
+endif
+stop
+@enduml

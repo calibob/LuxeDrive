@@ -1,0 +1,9 @@
+@startuml
+[*] --> Disponible
+Disponible --> Réservée : Réservation validée
+Réservée --> Louée : Début de location
+Louée --> Disponible : Retour véhicule
+Louée --> En_maintenance : Signalé défectueux
+En_maintenance --> Disponible : Réparation effectuée
+Réservée --> Disponible : Annulation
+@enduml

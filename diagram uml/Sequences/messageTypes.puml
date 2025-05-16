@@ -1,0 +1,13 @@
+@startuml
+participant A
+participant B
+
+A -> B : Message synchrone
+A --> B : Message asynchrone
+create B
+
+A -> B : Création d'objet
+destroy B
+
+B --> A : Destruction d'objet
+@enduml

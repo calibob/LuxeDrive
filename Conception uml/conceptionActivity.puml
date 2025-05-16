@@ -1,0 +1,13 @@
+@startuml
+start
+:Patient arrive;
+:Accueil par la secrétaire;
+:Ouverture du dossier;
+:Consultation par le médecin;
+:Diagnostic;
+if (Ordonnance nécessaire ?) then (oui)
+  :Créer ordonnance;
+endif
+:Créer facture;
+stop
+@enduml

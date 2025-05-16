@@ -1,0 +1,55 @@
+@startuml
+class Utilisateur {
+  - id : int
+  - nom : string
+  - email : string
+  - motDePasse : string
+}
+
+class Patient {
+  - numeroDossier : string
+  - adresse : string
+  - telephone : string
+}
+
+class Medecin {
+  - specialite : string
+}
+
+class Secretaire {
+  - bureau : string
+}
+
+class RendezVous {
+  - id : int
+  - dateHeure : datetime
+  - statut : string
+}
+
+class Consultation {
+  - id : int
+  - diagnostic : string
+  - date : datetime
+}
+
+class Ordonnance {
+  - id : int
+  - medicaments : string
+}
+
+class Facture {
+  - id : int
+  - montant : float
+  - payee : bool
+}
+
+Utilisateur <|-- Patient
+Utilisateur <|-- Medecin
+Utilisateur <|-- Secretaire
+
+Patient "1" -- "0..*" RendezVous
+Medecin "1" -- "0..*" RendezVous
+RendezVous "1" -- "1" Consultation
+Consultation "1" -- "0..1" Ordonnance
+Consultation "1" -- "1" Facture
+@enduml
