@@ -1,0 +1,14 @@
+@startuml
+start
+:Connexion du patient;
+:Remplir formulaire de rendez-vous;
+:Envoyer la demande;
+:Secrétaire vérifie la disponibilité;
+if (Créneau dispo ?) then (oui)
+  :Créer le rendez-vous;
+  :Notifier le patient;
+else (non)
+  :Proposer un autre créneau;
+endif
+stop
+@enduml

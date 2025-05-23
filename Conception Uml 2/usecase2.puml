@@ -1,0 +1,22 @@
+@startuml
+actor Patient
+actor Secretaire
+actor Medecin
+actor Administrateur
+
+rectangle "Système de gestion" {
+  Patient --> (Prendre rendez-vous)
+  Patient --> (Consulter ses rendez-vous)
+
+  Secretaire --> (Créer rendez-vous)
+  Secretaire --> (Modifier rendez-vous)
+  Secretaire --> (Annuler rendez-vous)
+
+  Medecin --> (Consulter dossiers patients)
+  Medecin --> (Effectuer une consultation)
+  Medecin --> (Rédiger une ordonnance)
+
+  Administrateur --> (Gérer utilisateurs)
+  Administrateur --> (Consulter statistiques)
+}
+@enduml

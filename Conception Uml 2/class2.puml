@@ -1,0 +1,62 @@
+@startuml
+
+class Utilisateur {
+  - id: int
+  - nom: string
+  - prenom: string
+  - email: string
+  - motDePasse: string
+}
+
+class Patient {
+  + consulterSesRendezVous(): void
+}
+
+class Medecin {
+  + consulterDossierPatient(): void
+  + creerOrdonnance(): void
+  + realiserConsultation(): void
+}
+
+class Secretaire {
+  + creerRendezVous(): void
+  + modifierRendezVous(): void
+  + annulerRendezVous(): void
+  + genererFacture(): void
+}
+
+class RendezVous {
+  - date: Date
+  - heure: Time
+  - statut: string
+}
+
+class Consultation {
+  - diagnostic: string
+  - date: Date
+  + enregistrer(): void
+}
+
+class Ordonnance {
+  - medicaments: List
+  + genererPDF(): void
+}
+
+class Facture {
+  - montant: float
+  - dateEmission: Date
+  + generer(): void
+}
+
+Utilisateur <|-- Patient
+Utilisateur <|-- Medecin
+Utilisateur <|-- Secretaire
+
+Patient "1" -- "0..*" RendezVous
+Medecin "1" -- "0..*" RendezVous
+Secretaire "1" -- "0..*" RendezVous
+RendezVous "1" -- "0..1" Consultation
+Consultation "1" -- "0..1" Ordonnance
+Consultation "1" -- "1" Facture
+
+@enduml

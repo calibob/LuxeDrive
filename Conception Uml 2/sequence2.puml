@@ -1,0 +1,12 @@
+@startuml
+actor Patient
+participant "Interface web" as Interface
+participant "Système" as Systeme
+participant Secretaire
+
+Patient -> Interface : Demander prise de rendez-vous
+Interface -> Systeme : Enregistrer demande
+Systeme -> Secretaire : Notification nouvelle demande
+Secretaire -> Systeme : Valider rendez-vous
+Systeme -> Interface : Confirmation au patient
+@enduml
